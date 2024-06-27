@@ -30,7 +30,7 @@ const DashboardFiles = () => {
     fetchDashboardFiles();
   }, [toast]);
 
-  if (loading) <Spinner />;
+  if (loading) return <Spinner />;
 
   return (
     <main className="mt-10">

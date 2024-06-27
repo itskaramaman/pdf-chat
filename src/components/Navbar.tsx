@@ -29,9 +29,17 @@ const Navbar = () => {
                 Pricing
               </Link>
               {session ? (
-                <Button variant="ghost" size="sm" onClick={() => signOut()}>
-                  Sign Out
-                </Button>
+                <>
+                  <Link
+                    href="/dashboard"
+                    className={buttonVariants({ variant: "ghost", size: "sm" })}
+                  >
+                    Dashboard
+                  </Link>
+                  <Button variant="ghost" size="sm" onClick={() => signOut()}>
+                    Sign Out
+                  </Button>
+                </>
               ) : (
                 <>
                   <Button variant="ghost" size="sm" onClick={() => signIn()}>
