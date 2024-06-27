@@ -8,27 +8,36 @@ import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Spinner from "@/components/Spinner";
 
 const SignInPage = () => {
   const [providers, setProviders] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { data: session } = useSession();
   const router = useRouter();
 
   useEffect(() => {
+    if (session) {
+      router.push("/");
+      return;
+    }
     const fetchSignInProviders = async () => {
-      const response = await axios.get("/api/auth/providers");
-      if (response.status === 200) {
-        setProviders(Object.values(response.data));
+      try {
+        const response = await axios.get("/api/auth/providers");
+        if (response.status === 200) {
+          setProviders(Object.values(response.data));
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchSignInProviders();
-  }, [setProviders]);
+  }, [setProviders, session, router]);
 
-  if (session) {
-    router.push("/");
-    return;
-  }
+  if (loading) return <Spinner />;
 
   return (
     <MaxWidthWrapper className="flex justify-center mt-20">

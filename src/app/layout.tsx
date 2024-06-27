@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 const inter = Inter({ subsets: ["latin"] });
 import AuthProvider from "./AuthProvider";
+import { Toaster } from "@/components/ui/toaster";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export const metadata: Metadata = {
   title: "PDF Chat",
@@ -24,6 +26,7 @@ export default function RootLayout({
         <AuthProvider>
           <Navbar />
           {children}
+          <Toaster />
         </AuthProvider>
       </body>
     </html>
