@@ -26,7 +26,7 @@ export async function DELETE(
       );
     }
 
-    // await db.file.delete({ where: { id: file.id } });
+    await db.file.delete({ where: { id: file.id } });
     return NextResponse.json(
       { message: "File deleted successfully" },
       { status: 200 }

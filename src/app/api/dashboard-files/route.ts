@@ -15,7 +15,6 @@ export async function GET(request: NextRequest) {
     }
 
     const files = await db.file.findMany({ where: { userId: Number(userId) } });
-    console.log(files);
 
     return NextResponse.json({ files }, { status: 200 });
   } catch (error: any) {
