@@ -1,4 +1,4 @@
-import UploadButton from "./UploadButton";
+import UploadButton from "@/components/upload/UploadButton";
 import DashboardFiles from "./DashboardFiles";
 
 const Dashboard = () => {

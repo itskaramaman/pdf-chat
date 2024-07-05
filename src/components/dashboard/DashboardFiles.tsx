@@ -3,8 +3,8 @@
 import axios from "axios";
 import DashboardFileCard from "./DashboardFileCard";
 import { useEffect, useState } from "react";
-import { useToast } from "./ui/use-toast";
-import Spinner from "./Spinner";
+import { useToast } from "../ui/use-toast";
+import Spinner from "../Spinner";
 import { File } from "@/utils/interfaces";
 import { Ghost, RocketIcon } from "lucide-react";
 

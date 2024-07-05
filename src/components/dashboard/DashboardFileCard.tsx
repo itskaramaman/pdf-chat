@@ -5,10 +5,10 @@ import { File } from "@/utils/interfaces";
 import Link from "next/link";
 import { Trash2, Plus, MessageSquare, Loader2 } from "lucide-react";
 import { format } from "date-fns";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { useState } from "react";
-import { useToast } from "./ui/use-toast";
+import { useToast } from "@/components/ui/use-toast";
 
 const DashboardFileCard = ({
   file,

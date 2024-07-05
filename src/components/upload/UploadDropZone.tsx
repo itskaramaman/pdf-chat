@@ -1,11 +1,11 @@
 "use client";
 
-import { Progress } from "./ui/progress";
+import { Progress } from "../ui/progress";
 import { Cloud, File, Loader2 } from "lucide-react";
 import { useState } from "react";
 import Dropzone from "react-dropzone";
 import { useUploadThing } from "@/utils/uploadThings";
-import { useToast } from "./ui/use-toast";
+import { useToast } from "../ui/use-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 

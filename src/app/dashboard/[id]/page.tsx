@@ -2,8 +2,8 @@
 
 import { useParams } from "next/navigation";
 import { useSession } from "next-auth/react";
-import PdfRenderer from "@/components/PdfRenderer";
-import ChatWrapper from "@/components/ChatWrapper";
+import PdfRenderer from "@/components/pdf/PdfRenderer";
+import ChatWrapper from "@/components/chat/ChatWrapper";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Spinner from "@/components/Spinner";
@@ -31,7 +31,7 @@ const DashboardChatPage = () => {
     fetchFileDetails();
   }, [id]);
 
-  if (  loading) return <Spinner />;
+  if (loading) return <Spinner />;
 
   return (
     <div className="flex-1 justify-between flex flex-col h-[calc(100vh-3.35rem)]">
@@ -45,7 +45,7 @@ const DashboardChatPage = () => {
 
         {/* right side */}
         <div className="shrink-0 flex-[0.75] border-t border-gray-200 lg:w-96 lg:border-l lg:border-t-0">
-          <ChatWrapper />
+          <ChatWrapper fileId={id} />
         </div>
       </div>
     </div>

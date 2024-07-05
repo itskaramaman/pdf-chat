@@ -1,8 +1,8 @@
-enum UploadStatus {
-  PENDING,
-  PROCESSING,
-  FAILED,
-  SUCCESS,
+export enum UploadStatus {
+  PENDING = "PENDING",
+  PROCESSING = "PROCESSING",
+  FAILED = "FAILED",
+  SUCCESS = "SUCCESS",
 }
 
 export interface File {

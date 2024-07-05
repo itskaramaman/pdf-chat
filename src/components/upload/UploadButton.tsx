@@ -1,12 +1,12 @@
 import { UploadIcon } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogTrigger,
   DialogTitle,
 } from "@/components/ui/dialog";
-import UploadDropZone from "./UploadDropZone";
+import UploadDropZone from "@/components/upload/UploadDropZone";
 
 const UploadButton = () => {
   return (
