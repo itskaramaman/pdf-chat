@@ -49,6 +49,7 @@ const UploadDropZone = () => {
           });
         }
 
+        console.log(res);
         // @ts-ignore
         const [fileResponse] = res;
         const key = fileResponse?.key;
