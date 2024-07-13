@@ -18,7 +18,7 @@ model User {
   email String @unique
 
   File File[]
-  Message Message[]
+  Note Note[]
 
   stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
   stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
@@ -41,27 +41,25 @@ model File {
   url String
   key String
 
-  message Message[]
+  User User? @relation(fields: [userId], references: [id])
+  userId Int
+
+  Note Note[]
+
+  createdAt DateTime @default(now())
+  upadtedAt DateTime @updatedAt
+}
+
+model Note {
+  id String @id @default(cuid())
+  content String
+
+  File File? @relation(fields: [fileId], references: [id])
+  fileId String
 
   User User? @relation(fields: [userId], references: [id])
   userId Int
 
   createdAt DateTime @default(now())
   upadtedAt DateTime @updatedAt
-}
-
-model Message {
-  id String @id @default(cuid())
-  text String @db.Text()
-
-  isUserMessage Boolean
-
-  File File @relation(fields: [fileId], references: [id])
-  fileId String
-
-  User User @relation(fields: [userId], references: [id])
-  userId Int
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
