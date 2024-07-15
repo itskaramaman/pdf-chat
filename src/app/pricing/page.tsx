@@ -7,10 +7,13 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from "@/components/ui/tooltip";
-import { HelpCircle } from "lucide-react";
+import { HelpCircle, Minus, Check, ArrowRight } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { plans } from "@/utils/stripe";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
+import UpgradeButton from "@/components/UpgradeButton";
 
 const pricingItems = [
   {
@@ -69,6 +72,7 @@ const pricingItems = [
 
 const PricingPage = () => {
   const { data: session } = useSession();
+  const user = session?.user.id;
 
   return (
     <MaxWidthWrapper className="mb-8 mt-24 text-center max-w-5xl">
@@ -125,6 +129,74 @@ const PricingPage = () => {
                       </TooltipContent>
                     </Tooltip>
                   </div>
+                </div>
+
+                <ul className="my-10 space-y-5 px-8">
+                  {features.map(({ text, footnote, negative }) => (
+                    <li key={text} className="flex space-x-5">
+                      <div className="flex-shrink-0">
+                        {negative ? (
+                          <Minus className="h-6 w-6 text-gray-300" />
+                        ) : (
+                          <Check className="h-6 w-6 text-blue-500" />
+                        )}
+                      </div>
+                      {footnote ? (
+                        <div className="flex items-center space-x-1">
+                          <p
+                            className={cn("text-gray-600", {
+                              "text-gray-400": negative,
+                            })}
+                          >
+                            {text}
+                          </p>
+                          <Tooltip delayDuration={300}>
+                            <TooltipTrigger className="cursor-default ml-1.5">
+                              <HelpCircle className="h-4 w-4 text-zinc-500" />
+                            </TooltipTrigger>
+                            <TooltipContent className="w-80 p-2">
+                              {footnote}
+                            </TooltipContent>
+                          </Tooltip>
+                        </div>
+                      ) : (
+                        <p
+                          className={cn("text-gray-600", {
+                            "text-gray-400": negative,
+                          })}
+                        >
+                          {text}
+                        </p>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+                <div className="border-t border-gray-200" />
+                <div className="p-5">
+                  {plan === "Free" ? (
+                    <Link
+                      href={user ? "/dashboard" : "/sign-in"}
+                      className={buttonVariants({
+                        className: "w-full",
+                        variant: "secondary",
+                      })}
+                    >
+                      {user ? "Upgrade now" : "Sign up"}
+                      <ArrowRight className="h-5 w-5 ml-1.5" />
+                    </Link>
+                  ) : user ? (
+                    <UpgradeButton />
+                  ) : (
+                    <Link
+                      href="/sign-in"
+                      className={buttonVariants({
+                        className: "w-full",
+                      })}
+                    >
+                      {user ? "Upgrade now" : "Sign up"}
+                      <ArrowRight className="h-5 w-5 ml-1.5" />
+                    </Link>
+                  )}
                 </div>
               </div>
             );
