@@ -26,7 +26,9 @@ export async function DELETE(
       );
     }
 
+    await db.note.deleteMany({ where: { fileId: id } });
     await db.file.delete({ where: { id: file.id } });
+
     return NextResponse.json(
       { message: "File deleted successfully" },
       { status: 200 }
@@ -65,4 +67,3 @@ export async function GET(
     return NextResponse.json({ message: error.message }, { status: 500 });
   }
 }
-

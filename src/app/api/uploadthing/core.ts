@@ -1,6 +1,7 @@
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { getSessionUser } from "@/utils/getSessionUsers";
 import { db } from "@/db";
+import { getDocument } from "pdfjs-dist";
 
 const f = createUploadthing();
 

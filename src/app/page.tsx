@@ -10,19 +10,19 @@ export default function Home() {
       <MaxWidthWrapper className="mb-12 mt-28 sm:mt-40 flex flex-col items-center justify-center text-center">
         <div className="mx-auto mb-4 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full border border-gray-200 bg-white px-7 py-2 shadow-md backdrop-blur transition-all hover:border-gray-300 hover:bg-white/50">
           <p className="text-sm font-semibold text-gray-700">
-            PDF-Chat is now public
+            PDF-Note is now public
           </p>
         </div>
         <h1 className="max-w-4xl text-5xl font-bold md:text-6xl lg:text-7xl leading-relaxed">
-          Chat with your{" "}
+          Notes with your{" "}
           <span className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white">
             documents
           </span>{" "}
           in seconds.
         </h1>
         <p className="mt-5 max-w-prose text-zinc-700 sm:text-lg">
-          PDF-Chat enables you to have conversation with any PDF document.
-          Simply upload your file and start asking questions right away.
+          PDF-Notes enables you to have create notes using AI with any PDF
+          document. Simply upload your file and start writing notes right away.
         </p>
         <Link
           className={buttonVariants({ size: "lg", className: "mt-5" })}
@@ -34,7 +34,7 @@ export default function Home() {
       </MaxWidthWrapper>
       <MaxWidthWrapper className="my-10 md:my-20 rounded-lg">
         <Image
-          src="/dashboard-preview.jpg"
+          src="/rockymountain.png"
           alt=""
           width={0}
           height={0}
@@ -74,7 +74,7 @@ export default function Home() {
                 Upload your PDF file
               </span>
               <span className="mt-2 text-zinc-700">
-                We&apos;ll process your file and make it ready for you to chat
+                We&apos;ll process your file and make it ready for you to note
                 with.
               </span>
             </div>
@@ -84,7 +84,7 @@ export default function Home() {
             <div className="flex flex-col space-y-2 border-l-4 border-zinc-300 py-2 pl-4">
               <span>Step 3</span>
               <span className="text-xl font-semibold">
-                Start asking questions
+                Start creating notes
               </span>
               <span className="mt-2 text-zinc-700">
                 It&apos;s that simple. Try it yourself - it really takes less

@@ -9,23 +9,12 @@ const modules = {
   toolbar: [
     [{ header: "1" }, { header: "2" }, { font: [] }],
     [{ list: "ordered" }, { list: "bullet" }],
-    [
-      "bold",
-      "italic",
-      "underline",
-      "strike",
-      "blockquote",
-      "code-block",
-      "size",
-    ],
+    ["bold", "italic", "underline", "strike", "blockquote", "code-block"],
     [{ color: [] }, { background: [] }],
     [{ align: [] }],
     ["link", "image", "video"],
     ["clean"],
   ],
-  clipboard: {
-    matchVisual: false,
-  },
 };
 
 interface INoteTakingEditorProps {
@@ -34,6 +23,7 @@ interface INoteTakingEditorProps {
 
 const NoteTakingEditor = ({ fileId }: INoteTakingEditorProps) => {
   const [value, setValue] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleChange = (content: string) => {
     setValue(content);
@@ -42,12 +32,15 @@ const NoteTakingEditor = ({ fileId }: INoteTakingEditorProps) => {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
+        setIsLoading(true);
         const response = await axios.get(`/api/note?fileId=${fileId}`);
         if (response.status === 200) {
           setValue(response.data.content);
         }
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchNotes();
@@ -70,7 +63,7 @@ const NoteTakingEditor = ({ fileId }: INoteTakingEditorProps) => {
   return (
     <ReactQuill
       className="m-6 h-[calc(80vh)] md:mx-0 mt-6  md:h-[calc(80vh)] lg:h-[calc(80vh)] border-none"
-      value={value}
+      value={isLoading ? "Loading...." : value}
       onChange={handleChange}
       modules={modules}
     />
